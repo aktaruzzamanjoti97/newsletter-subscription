@@ -16,8 +16,6 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-// console.log(FormData);
-
 export default function NewsletterSection() {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [submitError, setSubmitError] = useState<string | null>(null);
@@ -31,7 +29,7 @@ export default function NewsletterSection() {
 		reset,
 	} = useForm<FormData>({
 		resolver: zodResolver(schema),
-		mode: 'onChange', // Validate on change for real-time feedback
+		mode: 'onChange', 
 	});
 
 	const onSubmit = async (data: FormData) => {
@@ -199,12 +197,12 @@ export default function NewsletterSection() {
 				{/* Right Image */}
 				<div className='relative h-64 md:h-auto md:flex-1 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center overflow-hidden'>
 					<Image
-						src='/abstract.jpg' // Placeholder abstract art; replace with design asset
+						src='/abstract.jpg'
 						alt='Abstract curated art collection'
 						fill
 						className='object-cover opacity-70'
 						sizes='(max-width: 768px) 100vw, 50vw'
-						priority // For performance on above-the-fold image
+						priority
 					/>
 				</div>
 			</section>
