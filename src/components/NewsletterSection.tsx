@@ -29,7 +29,7 @@ export default function NewsletterSection() {
 		reset,
 	} = useForm<FormData>({
 		resolver: zodResolver(schema),
-		mode: 'onChange', 
+		mode: 'onChange',
 	});
 
 	const onSubmit = async (data: FormData) => {
@@ -54,7 +54,6 @@ export default function NewsletterSection() {
 				setSubmittedEmail(data.email);
 				reset();
 			} else {
-				// Handle API errors (e.g., 400, 500)
 				const errorData = await response.json().catch(() => ({}));
 				const errorMessage =
 					errorData.message ||
