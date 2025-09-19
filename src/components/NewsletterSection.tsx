@@ -72,12 +72,15 @@ export default function NewsletterSection() {
 			<section className='max-w-6xl w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row'>
 				{/* Left Content */}
 				<div className='p-8 md:p-12 flex-1 flex flex-col justify-center'>
-					<h1 className='text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight'>
+					<h1 className='text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4 leading-tight'>
 						Get the finest curated
 					</h1>
-					<p className='text-xl md:text-2xl text-gray-600 mb-8'>
+					<h1 className='text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4 leading-tight'>
+						abstracts delivered
+					</h1>
+					<h1 className='text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4 leading-tight'>
 						weekly to your inbox
-					</p>
+					</h1>
 
 					<ul className='space-y-3 mb-8 text-gray-700'>
 						<li className='flex items-center'>
@@ -110,6 +113,21 @@ export default function NewsletterSection() {
 							</svg>
 							Unlimited downloads for subscribers
 						</li>
+						<li className='flex items-center'>
+							<svg
+								className='w-5 h-5 text-blue-600 mr-3'
+								fill='none'
+								stroke='currentColor'
+								viewBox='0 0 24 24'>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth={2}
+									d='M5 13l4 4L19 7'
+								/>
+							</svg>
+							Regular does of artistic inspiration
+						</li>
 					</ul>
 
 					{/* Form or Success/Error States */}
@@ -121,12 +139,13 @@ export default function NewsletterSection() {
 								<label htmlFor='email' className='sr-only'>
 									Email address
 								</label>
-								<input
-									id='email'
-									type='email'
-									placeholder='Enter email'
-									className={`
-                    w-full px-4 py-3 border rounded-lg text-base
+								<div className='grid grid-cols-4 gap-2'>
+									<input
+										id='email'
+										type='email'
+										placeholder='Enter email'
+										className={`
+                    w-full px-4 py-3 border rounded-lg text-base col-span-3
                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
                     transition-colors duration-200
                     ${
@@ -136,13 +155,26 @@ export default function NewsletterSection() {
 							}
                     ${isValid && !errors.email ? 'border-green-500' : ''}
                   `}
-									disabled={isSubmitting}
-									aria-invalid={!!errors.email}
-									aria-describedby={
-										errors.email ? 'email-error' : undefined
-									}
-									{...register('email')}
-								/>
+										disabled={isSubmitting}
+										aria-invalid={!!errors.email}
+										aria-describedby={
+											errors.email ? 'email-error' : undefined
+										}
+										{...register('email')}
+									/>
+									<button
+										type='submit'
+										disabled={!isValid || isSubmitting}
+										className={`
+                  w-full py-3 px-6 bg-purple-600 text-white font-semibold rounded-lg col-span-1
+                  hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2
+                  disabled:bg-gray-400 disabled:cursor-not-allowed
+                  transition-colors duration-200
+                `}
+										aria-label='Subscribe to newsletter'>
+										{isSubmitting ? 'Subscribing...' : 'Subscribe'}
+									</button>
+								</div>
 								{errors.email && (
 									<p
 										id='email-error'
@@ -157,19 +189,6 @@ export default function NewsletterSection() {
 									{submitError}
 								</p>
 							)}
-
-							<button
-								type='submit'
-								disabled={!isValid || isSubmitting}
-								className={`
-                  w-full py-3 px-6 bg-purple-600 text-white font-semibold rounded-lg
-                  hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2
-                  disabled:bg-gray-400 disabled:cursor-not-allowed
-                  transition-colors duration-200
-                `}
-								aria-label='Subscribe to newsletter'>
-								{isSubmitting ? 'Subscribing...' : 'Subscribe'}
-							</button>
 						</form>
 					) : (
 						<div className='bg-green-50 border border-green-200 rounded-lg p-6 text-center'>
